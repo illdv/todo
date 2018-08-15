@@ -1,0 +1,56 @@
+.projects {
+	&__title{
+		margin-bottom: 40px;
+		padding-bottom: 20px;
+		border-bottom: 3px solid #f1f1f1;
+
+	}
+	&__wrapper{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	
+		&__title {
+			justify-content: space-between;
+		} 
+		&__add-btn {
+			width: 30px;
+
+&::before, &::after {
+	background-color:  rgb(201, 194, 194);
+}
+			&::before {
+				right:  0;
+			}
+			&::after {
+				top: 0;
+			}
+
+			&:hover::after , &:hover::before {
+				background-color: grey;
+				}
+				&:active::after , &:active::before
+				{
+					background-color:  rgb(201, 194, 194);
+				}
+				&:focus {
+					outline: none;
+				&::after , &::before {
+					background-color: grey;
+				}
+				}
+		}
+		&__field-edit{
+			padding-bottom: 20px;
+		}
+		&__item{
+			font-size: 20px;
+		}
+		&__text{
+			font-style: italic;
+		}
+}
+
+
+

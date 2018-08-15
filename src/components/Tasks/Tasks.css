@@ -1,0 +1,36 @@
+.tasks {
+  background-color: white; }
+  .tasks__title {
+    margin-bottom: 40px; }
+  .tasks__head-text {
+    font-size: 28px;
+    font-style: italic; }
+  .tasks__add-btn {
+    padding: 0;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 16px;
+    color: #ff1905;
+    opacity: 0.7; }
+    .tasks__add-btn:hover, .tasks__add-btn:focus {
+      opacity: 1;
+      outline: none; }
+    .tasks__add-btn:active {
+      opacity: 0.7; }
+    .tasks__add-btn::before, .tasks__add-btn::after {
+      background-color: #ff1905;
+      opacity: 0.7; }
+    .tasks__add-btn::before {
+      left: 0; }
+    .tasks__add-btn::after {
+      left: 13px; }
+  .tasks__item {
+    border-bottom: 2px solid rgba(241, 241, 241, 0.5);
+    font-size: 18px;
+    transition: 0.7s; }
+    .tasks__item:hover {
+      border-bottom: 3px solid #f1f1f1; }
+  .tasks__text {
+    margin-left: 20px; }

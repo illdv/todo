@@ -1,0 +1,266 @@
+.row {
+  position: relative; }
+
+.tasks, .projects {
+  min-height: 100vh; }
+
+.projects {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: -1000px;
+  background-color: #fafafa;
+  width: 85vw;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  transition: 0.7s; }
+
+.projects--active {
+  right: 0; }
+
+.toggle-burger {
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  position: absolute;
+  padding: 0;
+  right: 15px;
+  top: 15px;
+  background-color: transparent;
+  border: none;
+  z-index: 2;
+  transition: 0.7s; }
+  .toggle-burger::before {
+    content: "";
+    position: absolute;
+    top: 11px;
+    right: 5px;
+    width: 30px;
+    height: 3px;
+    background-color: #c9c2c2;
+    box-shadow: 0 8px 0 0 #c9c2c2, 0 16px 0 0 #c9c2c2; }
+  .toggle-burger:hover, .toggle-burger:focus {
+    outline: 1px solid #c9c2c2; }
+  .toggle-burger:active {
+    outline: none; }
+
+.projects--active ~ .toggle-burger {
+  right: auto;
+  background: white; }
+
+@media (min-width: 768px) {
+  .projects {
+    position: static;
+    box-shadow: none;
+    right: 0; }
+  .toggle-burger {
+    display: none; } }
+
+.tasks {
+  border-left: 1px solid #f1f1f1; }
+
+.title-block {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  min-height: 72px; }
+  .title-block__title {
+    font-weight: 700;
+    margin-bottom: 0; }
+  .title-block__btn-add {
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    position: relative; }
+    .title-block__btn-add::before, .title-block__btn-add::after {
+      content: '';
+      position: absolute;
+      transition: 0.7s; }
+    .title-block__btn-add::before {
+      width: 30px;
+      height: 4px;
+      top: 13px; }
+    .title-block__btn-add::after {
+      width: 4px;
+      height: 30px;
+      right: 13px; }
+
+.edit-field {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 100%; }
+  .edit-field__enter-value {
+    flex-basis: 100%;
+    padding: 10px;
+    margin-bottom: 15px; }
+    .edit-field__enter-value:focus, .edit-field__enter-value:hover {
+      outline: 1px solid black; }
+  .edit-field__btn {
+    border: none;
+    height: 40px;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center; }
+    .edit-field__btn--save {
+      background-color: rgba(255, 25, 5, 0.7);
+      border-radius: 13px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      margin-right: 30px;
+      color: white;
+      min-width: 110px;
+      padding: 0 15px;
+      transition: 0.7s; }
+      .edit-field__btn--save:hover, .edit-field__btn--save:focus {
+        background-color: #ff1905;
+        outline: none; }
+      .edit-field__btn--save:active {
+        background-color: rgba(255, 25, 5, 0.7); }
+    .edit-field__btn--cancel {
+      background-color: transparent;
+      color: black; }
+      .edit-field__btn--cancel:hover, .edit-field__btn--cancel:focus {
+        text-decoration: underline;
+        outline: none; }
+      .edit-field__btn--cancel:active {
+        text-decoration: none; }
+
+.list-block {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0; }
+  .list-block__item {
+    align-items: center;
+    position: relative;
+    display: flex;
+    margin: 20px 0;
+    padding: 10px; }
+    .list-block__item:first-child {
+      margin-top: 0; }
+    .list-block__item:last-child {
+      margin-bottom: 0; }
+  .list-block__text {
+    flex-grow: 1;
+    cursor: pointer; }
+  .list-block__btn {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+    color: #c9c2c2;
+    opacity: 0.7; }
+    .list-block__btn:hover, .list-block__btn:focus {
+      outline: none;
+      opacity: 1; }
+    .list-block__btn:active {
+      opacity: 0.7; }
+
+.active-item {
+  border: 2px solid rgba(241, 241, 241, 0.5);
+  border-radius: 10px;
+  transition: background-color 0.7s; }
+  .active-item--project {
+    background-color: white; }
+  .active-item:hover {
+    border: 2px solid #f1f1f1; }
+
+.modal-list {
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.08), 0 0 1px 0 rgba(0, 0, 0, 0.3); }
+  .modal-list__item {
+    border-bottom: 1px solid #f1f1f1;
+    width: 100%;
+    background-color: white;
+    transition: 0.7s; }
+    .modal-list__item:hover, .modal-list__item:focus {
+      background-color: #f1f1f1; }
+    .modal-list__item:active {
+      background-color: white; }
+  .modal-list__btn {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: 5px 10px; }
+
+.projects__title {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #f1f1f1; }
+
+.projects__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+
+.projects__title {
+  justify-content: space-between; }
+
+.projects__add-btn {
+  width: 30px; }
+  .projects__add-btn::before, .projects__add-btn::after {
+    background-color: #c9c2c2; }
+  .projects__add-btn::before {
+    right: 0; }
+  .projects__add-btn::after {
+    top: 0; }
+  .projects__add-btn:hover::after, .projects__add-btn:hover::before {
+    background-color: grey; }
+  .projects__add-btn:active::after, .projects__add-btn:active::before {
+    background-color: #c9c2c2; }
+  .projects__add-btn:focus {
+    outline: none; }
+    .projects__add-btn:focus::after, .projects__add-btn:focus::before {
+      background-color: grey; }
+
+.projects__field-edit {
+  padding-bottom: 20px; }
+
+.projects__item {
+  font-size: 20px; }
+
+.projects__text {
+  font-style: italic; }
+
+.tasks {
+  background-color: white; }
+  .tasks__title {
+    margin-bottom: 40px; }
+  .tasks__head-text {
+    font-size: 28px;
+    font-style: italic; }
+  .tasks__add-btn {
+    padding: 0;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 16px;
+    color: #ff1905;
+    opacity: 0.7; }
+    .tasks__add-btn:hover, .tasks__add-btn:focus {
+      opacity: 1;
+      outline: none; }
+    .tasks__add-btn:active {
+      opacity: 0.7; }
+    .tasks__add-btn::before, .tasks__add-btn::after {
+      background-color: #ff1905;
+      opacity: 0.7; }
+    .tasks__add-btn::before {
+      left: 0; }
+    .tasks__add-btn::after {
+      left: 13px; }
+  .tasks__item {
+    border-bottom: 2px solid rgba(241, 241, 241, 0.5);
+    font-size: 18px;
+    transition: 0.7s; }
+    .tasks__item:hover {
+      border-bottom: 3px solid #f1f1f1; }
+  .tasks__text {
+    margin-left: 20px; }

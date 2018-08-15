@@ -1,0 +1,33 @@
+.projects__title {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #f1f1f1; }
+
+.projects__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 0 !important; }
+
+.projects__title {
+  justify-content: space-between; }
+
+.projects__add-btn {
+  width: 30px; }
+  .projects__add-btn::before, .projects__add-btn::after {
+    background-color: #c9c2c2; }
+  .projects__add-btn::before {
+    right: 0; }
+  .projects__add-btn::after {
+    top: 0; }
+  .projects__add-btn:hover::after, .projects__add-btn:hover::before {
+    background-color: grey; }
+  .projects__add-btn:active::after, .projects__add-btn:active::before {
+    background-color: #c9c2c2; }
+  .projects__add-btn:focus {
+    outline: none; }
+    .projects__add-btn:focus::after, .projects__add-btn:focus::before {
+      background-color: grey; }
+
+.projects__field-edit {
+  padding-bottom: 20px; }

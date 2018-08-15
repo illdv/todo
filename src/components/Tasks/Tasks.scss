@@ -1,0 +1,55 @@
+
+.tasks{
+	background-color: white;
+	&__title{
+		margin-bottom: 40px;
+	}
+
+	&__head-text{
+		font-size: 28px;
+		font-style: italic;
+	}
+
+	&__add-btn {
+		padding: 0;
+		padding-left: 40px;
+		display: flex;
+		align-items: center;
+		font-size: 16px;
+		line-height: 16px;
+		color: #ff1905;
+		opacity: 0.7;
+		&:hover, &:focus {
+			opacity: 1;		
+			outline: none;
+		}
+		&:active{
+			opacity: 0.7;
+		}
+	
+		&::before, &::after{
+			background-color: #ff1905;
+			opacity: 0.7;
+		}
+		&::before {
+			left: 0;
+			
+		}
+		&::after {
+			left: 13px;
+		}
+	}
+	
+&__item {
+	border-bottom: 2px solid rgba(241,241,241, 0.5);
+	font-size: 18px;
+	transition: 0.7s;
+	&:hover{
+	border-bottom: 3px solid rgba(241,241,241, 1);
+
+	}
+}
+&__text{
+	margin-left: 20px;
+}
+}
