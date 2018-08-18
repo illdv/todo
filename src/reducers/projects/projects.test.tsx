@@ -35,4 +35,24 @@ describe('projects', () => {
 		).toEqual([{ id: 1, name: 'a' }, { id: 2, name: 'c' }])
 	})
 
+	// it('toggle project', () => {
+	// 	expect(
+	// 		projects(state, {
+	// 			type: TOGGLE_PROJECT,
+	// 			payload: 1
+	// 		})
+	// 	).toEqual([
+	// 		{
+	// 			id: 1,
+	// 			isOpen: true,
+	// 			text: []
+	// 		},
+	// 		{
+	// 			// id: 2,
+	// 			// isOpen: false,
+	// 			// text: [textItem1]
+	// 		}
+	// 	])
+	// })
+
 })

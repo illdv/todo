@@ -44,8 +44,8 @@ export type DELETE_TASK = typeof DELETE_TASK;
 export const ADD_TASK = 'ADD_TAS'
 export type ADD_TASK = typeof ADD_TASK;
 
-export const TOGGLE_TASK = 'TOGGLE_TASK'
-export type TOGGLE_TASK = typeof TOGGLE_TASK;
+export const TOGGLE_PROJECT = 'TOGGLE_PROJECT'
+export type TOGGLE_PROJECT = typeof TOGGLE_PROJECT;
 
 export const CREATE_TASK_LIST = 'CREATE_TASK_LIST'
 export type CREATE_TASK_LIST = typeof CREATE_TASK_LIST;

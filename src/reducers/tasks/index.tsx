@@ -1,5 +1,5 @@
-import { CREATE_TASK_LIST, ADD_TASK_TEXT, DELETE_TASK_TEXT, DELETE_TASK, EDIT_TASK, ADD_TASK, TOGGLE_TASK } from "../../constants";
-import { createObj } from '../../helpers'
+import { CREATE_TASK_LIST, ADD_TASK_TEXT, DELETE_TASK_TEXT, DELETE_TASK, EDIT_TASK, ADD_TASK } from "../../constants";
+import { createTask } from '../../helpers'
 
 
 
@@ -20,7 +20,7 @@ export default (state: Array<{ id: number, isOpen: boolean, text: Array<{ id: nu
 
 		case ADD_TASK:
 			return state.map(item => item.id === payload.id ?
-				createObj(item, true, item.text.concat([payload.text])) : item
+				createTask(item, item.text.concat([payload.text])) : item
 			)
 
 
@@ -30,7 +30,7 @@ export default (state: Array<{ id: number, isOpen: boolean, text: Array<{ id: nu
 
 			return state.map(item =>
 				item.id === payload.idProject ?
-					createObj(item, true, deleteText(item.text))
+					createTask(item, deleteText(item.text))
 					: item
 			)
 
@@ -41,7 +41,7 @@ export default (state: Array<{ id: number, isOpen: boolean, text: Array<{ id: nu
 			)
 
 			return state.map(item =>
-				item.id === payload.idProject ? createObj(item, true, EditedText(item.text)) : item
+				item.id === payload.idProject ? createTask(item, EditedText(item.text)) : item
 			)
 
 
@@ -49,22 +49,17 @@ export default (state: Array<{ id: number, isOpen: boolean, text: Array<{ id: nu
 
 
 		case DELETE_TASK_TEXT:
-			return state.filter(tab => !tab.isOpen).map((item, index) => index === 0 ? createObj(item, true) :
-				createObj(item, false))
+			return state.filter(tab => !tab.isOpen).map((item, index) => index === 0 ? createTask(item) :
+				createTask(item))
 
 
 		case ADD_TASK_TEXT:
 			return state.map(item =>
-				item.isOpen ? createObj(item, false) : item
+				item.isOpen ? createTask(item) : item
 			).concat(payload)
 
 
-		case TOGGLE_TASK:
-			return state.map(item =>
-				payload === item.id ?
-					createObj(item, true) :
-					createObj(item, false)
-			)
+
 
 
 		default: return state

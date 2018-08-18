@@ -5,10 +5,12 @@ import {
 } from "../constants";
 import getData from '../api'
 
-import { addId } from './../helpers'
+import { randomId } from './../helpers'
 
 
 
+export const addAttr = (item: Array<string> | string, index?: number) =>
+	({ id: randomId(), isOpen: index === 0, name: item })
 
 
 
@@ -22,7 +24,7 @@ function* fetchTitle() {
 
 		try {
 			const responseArr: Array<Object> = yield call(getData);
-			const dataTitle = responseArr.map((item: any) => addId(item.name, 'title'))
+			const dataTitle = responseArr.map((item: { name: string, id: number }, index) => addAttr(item.name, index))
 
 
 			yield put({
@@ -47,7 +49,7 @@ function* fetchTask() {
 
 		const store = yield select();
 		const dataTexts = store.projects.map((item: { id: number }) => (
-			{ id: item.id, isOpen: item === store.projects[0], text: [] }
+			{ id: item.id, text: [] }
 		))
 		yield put({
 			type: CREATE_TASK_LIST,
@@ -74,7 +76,7 @@ function* deleteTab() {
 function* addTab() {
 	yield takeEvery(ADD_TAB, function* (action: { type: string, payload: string }) {
 
-		const value = addId(action.payload, 'title')
+		const value = addAttr(action.payload, 0)
 
 
 		yield put({
@@ -85,7 +87,7 @@ function* addTab() {
 
 		yield put({
 			type: ADD_TASK_TEXT,
-			payload: { id: value.id, isOpen: true, text: [] }
+			payload: { id: value.id, text: [] }
 		})
 	})
 }

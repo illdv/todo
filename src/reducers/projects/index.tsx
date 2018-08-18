@@ -1,11 +1,12 @@
-import { FETCH_PROJECTS, SUCCESS, ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT } from "../../constants";
-
+import { FETCH_PROJECTS, SUCCESS, ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT, TOGGLE_PROJECT } from "../../constants";
+import { createProject } from '../../helpers'
 interface types {
   type: string;
   payload: any
 }
 
-export default (state: Array<Object> = [], { type, payload }: types) => {
+
+export default (state: Array<any> = [], { type, payload }: types) => {
 
   switch (type) {
 
@@ -18,7 +19,8 @@ export default (state: Array<Object> = [], { type, payload }: types) => {
 
     case ADD_PROJECT:
 
-      return state.concat(payload)
+      return state.map(item => createProject(item, false)
+      ).concat(payload)
 
 
     case DELETE_PROJECT:
@@ -30,6 +32,13 @@ export default (state: Array<Object> = [], { type, payload }: types) => {
         item.id === payload.id ? { id: item.id, name: payload.name } : item
       )
 
+
+    case TOGGLE_PROJECT:
+      return state.map(item =>
+        item.id === payload ?
+          createProject(item, true) :
+          createProject(item, false)
+      )
 
     default: return state
   }

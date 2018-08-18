@@ -1,7 +1,11 @@
-export const addId = (item: Array<string> | string, title?: string) =>
-	({ id: Date.now() + Math.random(), [title ? 'name' : 'text']: item })
+export const randomId = () => Date.now() + Math.random()
 
 
-export const createObj = (item: any, bool: boolean, changeText?: Array<Object>) => {
-	return { id: item.id, isOpen: bool, text: changeText ? changeText : item.text }
+export const createProject = (item: any, isOpen: boolean) => {
+	return { id: item.id, isOpen, name: item.name }
+}
+
+
+export const createTask = (item: any, changeText?: Array<Object>) => {
+	return { id: item.id, text: changeText ? changeText : item.text }
 }

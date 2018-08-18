@@ -1,6 +1,6 @@
 import tasks from '.'
 
-import { ADD_TASK_TEXT, DELETE_TASK_TEXT, DELETE_TASK, EDIT_TASK, ADD_TASK, TOGGLE_TASK } from "../../constants";
+import { ADD_TASK_TEXT, DELETE_TASK_TEXT, DELETE_TASK, EDIT_TASK, ADD_TASK } from "../../constants";
 
 
 
@@ -124,25 +124,7 @@ describe('tasks', () => {
 	})
 
 
-	it('toggle task', () => {
-		expect(
-			tasks(state, {
-				type: TOGGLE_TASK,
-				payload: 1
-			})
-		).toEqual([
-			{
-				id: 1,
-				isOpen: true,
-				text: []
-			},
-			{
-				id: 2,
-				isOpen: false,
-				text: [textItem1]
-			}
-		])
-	})
+
 
 
 })

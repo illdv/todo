@@ -1,10 +1,11 @@
 import {
 
-    DELETE_TASK, EDIT_TASK, ADD_TASK, TOGGLE_TASK, CURRENT_ID, DELETE_TAB, ADD_TAB, FETCH_PROJECTS, EDIT_PROJECT
+    DELETE_TASK, EDIT_TASK, ADD_TASK, TOGGLE_PROJECT, CURRENT_ID, DELETE_TAB, ADD_TAB, FETCH_PROJECTS, EDIT_PROJECT
 } from "../constants";
+import { randomId } from '../helpers'
 
-import { addId } from '../helpers'
-
+const addId = (item: Array<string> | string) =>
+    ({ id: randomId(), text: item })
 
 
 export const fetchTitlelist = () => ({
@@ -37,7 +38,7 @@ export const deletedTask = (id: number, idProject: number) => ({
 
 
 export const toggleText = (idProject: number) => ({
-    type: TOGGLE_TASK,
+    type: TOGGLE_PROJECT,
     payload: idProject
 })
 
