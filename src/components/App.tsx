@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 import StoreState from '../types'
 import { fetchTitlelist } from '../AC'
-import Projects from './Projects'
+import ProjectTitle from './Projects/ProjectTitle'
+import ProjectItem from './Projects/ProjectItem'
 import Tasks from './Tasks'
 
 import './style.css'
@@ -15,7 +16,6 @@ import './style.css'
 
 interface Props {
 	fetchTitlelist: Function;
-	listProjects: Array<Object>;
 	listTasks: Array<Object>;
 
 }
@@ -33,7 +33,7 @@ class App extends React.Component<Props> {
 	}
 
 	render() {
-		const { listProjects, listTasks } = this.props
+		const { listTasks } = this.props
 
 		return <div className='container'>
 			<div className='row'>
@@ -42,7 +42,8 @@ class App extends React.Component<Props> {
 					'projects': true,
 					'projects--active': this.state.isOpenMobileProjects
 				})}>
-					<Projects projects={listProjects} />
+					<ProjectTitle />
+					<ProjectItem />
 				</aside>
 
 				<section className='col-md-7 pl-md-5  tasks'>
@@ -62,10 +63,13 @@ class App extends React.Component<Props> {
 	})
 }
 
+
+
+
 export default connect(
 	(state: StoreState) => ({
-		listProjects: state.projects,
 		listTasks: state.tasks,
 	}),
 	{ fetchTitlelist, }
 )(App)
+

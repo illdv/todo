@@ -1,4 +1,4 @@
-export const addId = (item: Array<string>, title?: string) =>
+export const addId = (item: Array<string> | string, title?: string) =>
 	({ id: Date.now() + Math.random(), [title ? 'name' : 'text']: item })
 
 

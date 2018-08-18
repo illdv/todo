@@ -6,9 +6,7 @@ import ModalProject from './ModalProject'
 
 class DefaultField extends Component {
 
-	state = {
-		isOpened: null
-	}
+
 
 
 	handleClickOutside = e => {
@@ -21,7 +19,7 @@ class DefaultField extends Component {
 
 
 
-		const onActive = Object.keys(tasks).length && this.props.tasks.find(task =>
+		const onActive = tasks.length && this.props.tasks.find(task =>
 			task.id === project.id
 		).isOpen
 
@@ -37,8 +35,8 @@ class DefaultField extends Component {
 				className='list-block__text projects__text' >
 				{project.name}
 			</span>
-			{onActive && <button className='list-block__btn' onClick={() => currentId(project.id, 'modal')}>Изменить</button>}
 
+			{onActive && <button className='list-block__btn' onClick={() => currentId(project.id, 'modal')}>Изменить</button>}
 			{actualId.modal === project.id &&
 				<ModalProject id={project.id} />}
 		</li>

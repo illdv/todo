@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import EditField from '../EditField'
 import { connect } from 'react-redux';
 import { addTab } from '../../AC'
 
 
 
-class TitleMenu extends Component {
+class TitleMenu extends React.Component {
 
     state = {
         isOpenTitle: false,
@@ -32,7 +32,7 @@ class TitleMenu extends Component {
         })
     }
 
-    handleProjectTitle = value => {
+    handleProjectTitle = (value) => {
         value && this.props.addTab(value)
         this.HandleOpen()
     }

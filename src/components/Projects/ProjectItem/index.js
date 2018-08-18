@@ -8,12 +8,17 @@ import { editProjectName, currentId } from './../../../AC'
 class ItemProjects extends Component {
 
 	render() {
-		const { project, actualId } = this.props
+		const { projectList, actualId } = this.props
 
-		return actualId.editProject === project.id ?
-			<EditField id={project.id} name={project.name} handleTextValue={this.editProjectName} onOpen={this.canceledEdit} /> :
-			<DefaultField project={project}
-			/>
+		return projectList.map(project =>
+
+			actualId.editProject === project.id ?
+				<EditField key={project.id} id={project.id} name={project.name} handleTextValue={this.editProjectName} onOpen={this.canceledEdit} /> :
+				<DefaultField key={project.id} project={project}
+				/>
+		)
+
+
 	}
 
 	editProjectName = (value, id) => {
@@ -31,6 +36,7 @@ export default connect(
 	state => (
 		{
 			actualId: state.currentId,
+			projectList: state.projects
 		}),
 	{ editProjectName, currentId }
 )(ItemProjects)

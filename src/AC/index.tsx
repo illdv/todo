@@ -56,9 +56,9 @@ export const deleteTab = (id: number) => ({
 })
 
 
-export const addTab = (text: string) => ({
+export const addTab = (name: string) => ({
     type: ADD_TAB,
-    payload: text
+    payload: name
 })
 
 

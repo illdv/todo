@@ -1,12 +1,22 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 
+interface Props {
+	onOpen: any;
+	handleTextValue: Function;
+	id: number;
+	name: string;
+}
+interface State {
+	value: string
+}
 
-class ValueFieldTitle extends Component {
+class ValueFieldTitle extends React.Component<Props, State> {
+
 	state = {
 		value: ''
 	}
 
-	textInput = React.createRef();
+	textInput: any = React.createRef();
 
 	componentDidMount() {
 		this.textInput.current.focus();
@@ -24,10 +34,10 @@ class ValueFieldTitle extends Component {
 			<button className='edit-field__btn edit-field__btn--save'
 				onClick={() => this.props.handleTextValue(this.state.value, this.props.id)}>
 				сохранить
-						</button>
+			</button>
 			<button className='edit-field__btn edit-field__btn--cancel'
 				onClick={this.props.onOpen}>отмена
-						</button>
+			</button>
 		</div >
 	}
 }

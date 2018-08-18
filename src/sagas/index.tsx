@@ -58,11 +58,11 @@ function* fetchTask() {
 }
 
 function* deleteTab() {
-	yield takeEvery(DELETE_TAB, function* (payload) {
+	yield takeEvery(DELETE_TAB, function* (action: { type: string, payload: number }) {
 
 		yield put({
 			type: DELETE_PROJECT,
-			payload
+			payload: action.payload
 		})
 
 		yield put({
@@ -72,9 +72,9 @@ function* deleteTab() {
 }
 
 function* addTab() {
-	yield takeEvery(ADD_TAB, function* (payload: any) {
+	yield takeEvery(ADD_TAB, function* (action: { type: string, payload: string }) {
 
-		const value = addId(payload, 'title')
+		const value = addId(action.payload, 'title')
 
 
 		yield put({

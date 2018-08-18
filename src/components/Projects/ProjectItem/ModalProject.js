@@ -31,9 +31,6 @@ class ModalProject extends Component {
 
 
 export default connect(
-	state => (
-		{
-			actualId: state.currentId,
-		}),
+	null,
 	{ deleteTab, currentId }
 )(onClickOutside(ModalProject))
