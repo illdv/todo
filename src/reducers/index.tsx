@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import projects from './projects'
-import tasks from './tasks'
-import currentId from './currentId'
+import projects from './projects/'
+import tasks from './tasks/'
+import currentId from './currentId/'
 
 
 export default combineReducers({

@@ -17,7 +17,8 @@
     "react-scripts-ts": "2.17.0",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.13",
@@ -41,9 +42,9 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts-ts start",
     "start": "npm-run-all -p watch-css start-js",
-    "build-js": "react-scripts build",
+    "build-js": "react-scripts-ts build",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }

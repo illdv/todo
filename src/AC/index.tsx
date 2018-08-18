@@ -1,27 +1,22 @@
 import {
-    FETCH_TITLE_LIST, EDIT_TITLE_ITEM,
-    DELETE_TASK, EDIT_TASK, ADD_TASK, TOGGLE_TASK, CURRENT_ID, DELETE_TAB, ADD_TAB,
+
+    DELETE_TASK, EDIT_TASK, ADD_TASK, TOGGLE_TASK, CURRENT_ID, DELETE_TAB, ADD_TAB, FETCH_PROJECTS, EDIT_PROJECT
 } from "../constants";
 
-
-
-
-const addId = (item: Array<string>, title: string) =>
-    ({ id: Date.now() + Math.random(), [title ? 'name' : 'text']: item })
-
-
+import { addId } from '../helpers'
 
 
 
 export const fetchTitlelist = () => ({
-    type: FETCH_TITLE_LIST
+    type: FETCH_PROJECTS
 })
 
 
-export const editProjectName = (text: string, id: number) => ({
-    type: EDIT_TITLE_ITEM,
-    payload: { text, id }
+export const editProjectName = (name: string, id: number) => ({
+    type: EDIT_PROJECT,
+    payload: { id, name }
 })
+
 
 export const editProjectText = (text: string, id: number, idProject: number) => ({
     type: EDIT_TASK,
@@ -31,7 +26,7 @@ export const editProjectText = (text: string, id: number, idProject: number) => 
 
 export const addedProjectTask = (id: number, item: Array<string>) => ({
     type: ADD_TASK,
-    payload: { id, text: addId(item, 'title') }
+    payload: { id, text: addId(item) }
 })
 
 
@@ -41,13 +36,13 @@ export const deletedTask = (id: number, idProject: number) => ({
 })
 
 
-export const toggleText = (ProjectId: number) => ({
+export const toggleText = (idProject: number) => ({
     type: TOGGLE_TASK,
-    payload: ProjectId
+    payload: idProject
 })
 
 
-export const currentId = (id = null, mark: string) => ({
+export const currentId = (id: number, mark?: string) => ({
     type: CURRENT_ID,
     payload: mark ? { [mark]: id } : {}
 })
@@ -65,3 +60,10 @@ export const addTab = (text: string) => ({
     type: ADD_TAB,
     payload: text
 })
+
+
+
+
+
+
+

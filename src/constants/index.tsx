@@ -5,20 +5,20 @@ export type SUCCESS = typeof SUCCESS;
 export const FAIL = '_FAIL'
 export type FAIL = typeof FAIL;
 
-export const FETCH_TITLE_LIST = 'FETCH_TITLE_LIST'
-export type FETCH_TITLE_LIST = typeof FETCH_TITLE_LIST;
+export const FETCH_PROJECTS = 'FETCH_PROJECTS'
+export type FETCH_PROJECTS = typeof FETCH_PROJECTS;
 
-export const ADD_TITLE_ITEM = 'ADD_TITLE_ITEM'
-export type ADD_TITLE_ITEM = typeof ADD_TITLE_ITEM;
+export const ADD_PROJECT = 'ADD_PROJECT'
+export type ADD_PROJECT = typeof ADD_PROJECT;
+
+export const EDIT_PROJECT = 'EDIT_PROJECT'
+export type EDIT_PROJECT = typeof EDIT_PROJECT
+
+export const DELETE_PROJECT = 'DELETE_PROJECT'
+export type DELETE_PROJECT = typeof DELETE_PROJECT;
 
 export const ADD_TASK_TEXT = 'ADD_TASK_TEXT'
 export type ADD_TASK_TEXT = typeof ADD_TASK_TEXT;
-
-export const EDIT_TITLE_ITEM = 'EDIT_PROJECT_NAME'
-export type EDIT_TITLE_ITEM = typeof EDIT_TITLE_ITEM;
-
-export const DELETE_TITLE_ITEM = 'DELETE_TITLE_ITEM'
-export type DELETE_TITLE_ITEM = typeof DELETE_TITLE_ITEM;
 
 export const DELETE_TASK_TEXT = 'DELETE_TASK_TEXT'
 export type DELETE_TASK_TEXT = typeof DELETE_TASK_TEXT;
