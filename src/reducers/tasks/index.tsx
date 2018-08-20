@@ -1,14 +1,12 @@
-import { CREATE_TASK_LIST, ADD_TASK_TEXT, DELETE_TASK_TEXT, DELETE_TASK, EDIT_TASK, ADD_TASK } from "../../constants";
+import { CREATE_TASK_LIST, DELETE_TASK, EDIT_TASK, ADD_TASK, ADD_TASK_TEXT, DELETE_TASK_TEXT } from "../../constants";
 import { createTask } from '../../helpers'
-
-
-
 
 
 interface tasks {
 	type: string;
 	payload: any;
 }
+
 
 export default (state: Array<{ id: number, text: Array<{ id: number }> }> = [], { type, payload }: tasks) => {
 
@@ -25,7 +23,6 @@ export default (state: Array<{ id: number, text: Array<{ id: number }> }> = [], 
 
 
 		case DELETE_TASK:
-			console.log(payload);
 
 			const deleteText = (text: Array<{ id: number }>) => text.filter(t => t.id !== payload.id
 			)
@@ -46,22 +43,14 @@ export default (state: Array<{ id: number, text: Array<{ id: number }> }> = [], 
 				item.id === payload.idProject ? createTask(item, EditedText(item.text)) : item
 			)
 
+		case ADD_TASK_TEXT:
 
-
+			return state.concat(payload)
 
 
 		case DELETE_TASK_TEXT:
-			return state.filter(tab => !tab.isOpen).map((item, index) => index === 0 ? createTask(item) :
-				createTask(item))
 
-
-		case ADD_TASK_TEXT:
-			return state.map(item =>
-				item.isOpen ? createTask(item) : item
-			).concat(payload)
-
-
-
+			return state.filter(tab => tab.id !== payload.id)
 
 
 		default: return state

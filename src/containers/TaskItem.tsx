@@ -1,27 +1,30 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { editProjectText, changeCurrentId } from '../../../AC'
+import { editProjectText, changeCurrentId } from '../AC'
 
 
-import EditField from '../../EditField'
-import DefaultField from './DefaultField'
+import EditField from '../components/EditField'
+import DefaultField from '../components/TaskField'
 
-import StoreState, { Itask } from '../../../types'
+import StoreState, { Itask } from '../types'
+import { createSelector } from 'reselect'
 
 
 interface Props {
 	editProjectText: Function;
 	changeCurrentId: Function;
 	actualId: any;
-	currentTask: Itask
-
+	currentTask: Itask,
+	projectId: any,
 }
 
 class ItemTaskList extends React.Component<Props> {
 
 
+
 	render() {
-		const { actualId, currentTask } = this.props
+		const { actualId, currentTask, projectId } = this.props
+		console.log(projectId);
 
 
 		return currentTask ? <ul className='list-block'>
@@ -48,15 +51,26 @@ class ItemTaskList extends React.Component<Props> {
 
 }
 
+const fn = createSelector(
+	(state: StoreState) => state.projects.find(item => item.isOpen),
+	(state: StoreState) => state.tasks,
+	(projectOpen, tasks) => {
+		return tasks.find((task) => projectOpen.id === task.id)
+	}
+)
 
 
 export default connect(
 	(state: StoreState) => {
-		const openProject = state.projects.find(item => item.isOpen)
+
 
 		return {
 			actualId: state.currentId,
-			currentTask: state.tasks.find(task => openProject.id === task.id)
+			currentTask: fn(state),
+			projectId: state.projects.find(item => {
+
+				return item.isOpen
+			})
 		}
 	}, { editProjectText, changeCurrentId }
 )(ItemTaskList)

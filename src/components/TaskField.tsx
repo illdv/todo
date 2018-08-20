@@ -1,7 +1,7 @@
 import * as React from 'react'
-import DeleteBtn from '../../buttons/DeleteBtn'
-import CurrentIdBtn from '../../buttons/CurrentIdBtn'
-import { Itext } from '../../../types'
+import DeleteBtn from '../containers/buttons/DeleteBtn'
+import CurrentIdBtn from '../containers/buttons/CurrentIdBtn'
+import { Itext } from '../types'
 
 interface Itypes {
 	projectId: number;

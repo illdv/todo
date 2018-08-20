@@ -42,7 +42,6 @@ describe('tasks', () => {
 			item1,
 			{
 				id: 2,
-				isOpen: true,
 				text: [textItem1, textItem2]
 			}
 		])
@@ -58,7 +57,6 @@ describe('tasks', () => {
 			item1,
 			{
 				id: 2,
-				isOpen: true,
 				text: []
 			}
 		])
@@ -75,7 +73,6 @@ describe('tasks', () => {
 			item1,
 			{
 				id: 2,
-				isOpen: true,
 				text: [{ id: 11, text: 'zzz', }]
 			}
 		])
@@ -85,12 +82,11 @@ describe('tasks', () => {
 		expect(
 			tasks(state, {
 				type: DELETE_TASK_TEXT,
-				payload: null
+				payload: { id: 2 }
 			})
 		).toEqual([
 			{
 				id: 1,
-				isOpen: true,
 				text: []
 			}
 		])
@@ -102,7 +98,6 @@ describe('tasks', () => {
 				type: ADD_TASK_TEXT,
 				payload: {
 					id: 3,
-					isOpen: true,
 					text: []
 				}
 			})
@@ -110,12 +105,10 @@ describe('tasks', () => {
 			item1,
 			{
 				id: 2,
-				isOpen: false,
 				text: [textItem1]
 			},
 			{
 				id: 3,
-				isOpen: true,
 				text: []
 			}
 		])

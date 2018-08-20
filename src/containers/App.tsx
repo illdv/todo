@@ -4,15 +4,13 @@ import classnames from 'classnames'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { fetchTitlelist } from '../AC'
-import ProjectTitle from './Projects/ProjectTitle'
-import ProjectItem from './Projects/ProjectItem'
-import ItemTaskList from './Tasks/ItemTaskList'
-import TitleTaskList from './Tasks/TitleTaskList'
+import ProjectTitle from './ProjectTitle'
+import ProjectItem from './ProjectItem'
+import TaskItem from './TaskItem'
+import TitleTaskList from './TaskTitle'
 
 
-import './style.css'
-
-
+import '../styles/style.css'
 
 
 interface Props {
@@ -46,7 +44,7 @@ class App extends React.Component<Props> {
 
 				<section className='col-md-7 pl-md-5  tasks'>
 					<TitleTaskList />
-					<ItemTaskList />
+					<TaskItem />
 				</section>
 
 				<button

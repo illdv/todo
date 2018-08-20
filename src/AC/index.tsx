@@ -31,7 +31,6 @@ export const addedProjectTask = (id: number, item: Array<string>) => ({
 
 
 export const deleteTask = (id: number, idProject: number) => {
-    console.log(id, idProject);
 
     return {
         type: DELETE_TASK,

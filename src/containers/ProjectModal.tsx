@@ -1,11 +1,10 @@
 import * as React from 'react'
-
+import { connect } from 'react-redux'
 import onClickOutside from "react-onclickoutside";
-import DeleteBtn from '../../buttons/DeleteBtn'
-import CurrentIdBtn from '../../buttons/CurrentIdBtn'
-import { changeCurrentId } from '../../../AC'
-import { randomId } from '../../../helpers'
-import { connect } from 'react-redux';
+import DeleteBtn from './buttons/DeleteBtn'
+import CurrentIdBtn from './buttons/CurrentIdBtn'
+import { randomId } from '../helpers'
+import { changeCurrentId } from '../AC'
 
 interface Props {
 	id: number;
@@ -26,6 +25,7 @@ class ModalProject extends React.Component<Props> {
 	}
 
 	handleClickOutside = (e: any) => {
+
 		e.target.classList.value !== 'modal-list__btn' && this.props.changeCurrentId()
 	};
 
@@ -39,8 +39,8 @@ class ModalProject extends React.Component<Props> {
 }
 
 
+
 export default connect(
 	null,
 	{ changeCurrentId }
-
 )(ModalProject)

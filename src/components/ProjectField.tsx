@@ -1,27 +1,21 @@
 import * as React from 'react';
-import { connect } from 'react-redux'
 import classnames from 'classnames'
-import { toggleText } from '../../../AC'
-import ModalProject from './ModalProject'
-import StoreState, { Iproject } from '../../../types'
-import CurrentIdBtn from '../../buttons/CurrentIdBtn'
-
+import ProjectModal from '../containers/ProjectModal'
+import { Iproject } from '../types'
+import CurrentIdBtn from '../containers/buttons/CurrentIdBtn'
 
 interface Props {
 	project: Iproject;
 	toggleText: Function;
+	changeCurrentId: Function;
 	actualId: { modal: number };
 }
 
-
-class DefaultField extends React.Component<Props> {
-
+class ProjectField extends React.Component<Props> {
 
 
 	render() {
 		const { project, toggleText, actualId } = this.props
-
-
 
 
 		const activeStyle = classnames({
@@ -40,16 +34,12 @@ class DefaultField extends React.Component<Props> {
 			{project.isOpen &&
 				<CurrentIdBtn id={project.id} textContent='Изменить' mark='modal' classValue='list-block__btn' />}
 			{actualId.modal === project.id &&
-				<ModalProject id={project.id} />}
+				<ProjectModal id={project.id} />}
 		</li>
 	}
 }
 
 
-export default connect(
-	(state: StoreState) => (
-		{
-			actualId: state.currentId,
-		}),
-	{ toggleText }
-)(DefaultField)
+export default ProjectField
+
+

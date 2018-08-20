@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import EditField from '../EditField'
-import { addedProjectTask } from '../../AC'
-import StoreState from '../../types'
+import EditField from '../components/EditField'
+import { addedProjectTask } from '../AC'
+import StoreState from '../types'
 
 
 interface Props {

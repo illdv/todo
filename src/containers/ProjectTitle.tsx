@@ -1,7 +1,7 @@
 import * as React from 'react'
-import EditField from '../EditField'
+import EditField from '../components/EditField'
 import { connect } from 'react-redux';
-import { addTab } from '../../AC'
+import { addTab } from '../AC'
 
 interface Props {
     addTab: Function;
@@ -41,7 +41,6 @@ class TitleMenu extends React.Component<Props, State> {
         value && this.props.addTab(value)
         this.HandleOpen()
     }
-
 }
 
 
