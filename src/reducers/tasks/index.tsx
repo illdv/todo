@@ -10,7 +10,7 @@ interface tasks {
 	payload: any;
 }
 
-export default (state: Array<{ id: number, isOpen: boolean, text: Array<{ id: number }> }> = [], { type, payload }: tasks) => {
+export default (state: Array<{ id: number, text: Array<{ id: number }> }> = [], { type, payload }: tasks) => {
 
 	switch (type) {
 
@@ -25,6 +25,8 @@ export default (state: Array<{ id: number, isOpen: boolean, text: Array<{ id: nu
 
 
 		case DELETE_TASK:
+			console.log(payload);
+
 			const deleteText = (text: Array<{ id: number }>) => text.filter(t => t.id !== payload.id
 			)
 

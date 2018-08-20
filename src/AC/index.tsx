@@ -1,5 +1,4 @@
 import {
-
     DELETE_TASK, EDIT_TASK, ADD_TASK, TOGGLE_PROJECT, CURRENT_ID, DELETE_TAB, ADD_TAB, FETCH_PROJECTS, EDIT_PROJECT
 } from "../constants";
 import { randomId } from '../helpers'
@@ -31,19 +30,23 @@ export const addedProjectTask = (id: number, item: Array<string>) => ({
 })
 
 
-export const deletedTask = (id: number, idProject: number) => ({
-    type: DELETE_TASK,
-    payload: { id, idProject }
-})
+export const deleteTask = (id: number, idProject: number) => {
+    console.log(id, idProject);
+
+    return {
+        type: DELETE_TASK,
+        payload: { id, idProject }
+    }
+}
 
 
 export const toggleText = (idProject: number) => ({
     type: TOGGLE_PROJECT,
-    payload: idProject
+    payload: { id: idProject }
 })
 
 
-export const currentId = (id: number, mark?: string) => ({
+export const changeCurrentId = (id: number, mark?: string) => ({
     type: CURRENT_ID,
     payload: mark ? { [mark]: id } : {}
 })

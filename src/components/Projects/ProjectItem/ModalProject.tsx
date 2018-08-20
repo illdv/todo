@@ -1,13 +1,15 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { deleteTab, currentId } from '../../../AC'
+
 import onClickOutside from "react-onclickoutside";
-import DeleteBtn from '../../buttons/delete'
+import DeleteBtn from '../../buttons/DeleteBtn'
+import CurrentIdBtn from '../../buttons/CurrentIdBtn'
+import { changeCurrentId } from '../../../AC'
+import { randomId } from '../../../helpers'
+import { connect } from 'react-redux';
 
 interface Props {
 	id: number;
-	deleteTab: Function;
-	currentId: Function;
+	changeCurrentId: Function;
 }
 
 @onClickOutside
@@ -15,31 +17,30 @@ class ModalProject extends React.Component<Props> {
 
 	render() {
 		return <ul className='list-block modal-list'>
-			{this.listBtn().map((btn, index) =>
-				<li className='modal-list__item' key={index}>
+			{this.listBtn().map(btn =>
+				<li className='modal-list__item' key={randomId()}>
 					{btn}
-					<DeleteBtn id={this.props.id} textContent='удалить проект' />
 				</li>
 			)}
 		</ul>
 	}
 
 	handleClickOutside = (e: any) => {
-		e.target.classList.value !== 'modal-list__btn' && this.props.currentId()
+		e.target.classList.value !== 'modal-list__btn' && this.props.changeCurrentId()
 	};
 
-	listBtn = () => {
-		const { id, deleteTab, currentId } = this.props
-		return [
-
-			<button className='modal-list__btn' onClick={() => deleteTab(id)}>удалить проект</button>,
-			<button className='modal-list__btn' onClick={() => currentId(id, 'editProject')}>редактировать название</button>
+	listBtn = () =>
+		[
+			<DeleteBtn id={this.props.id} textContent='удалить проект' classValue='modal-list__btn' />,
+			<CurrentIdBtn id={this.props.id} mark='editProject'
+				classValue='modal-list__btn' textContent='редактировать название' />
 		]
-	}
+
 }
 
 
 export default connect(
 	null,
-	{ deleteTab, currentId }
+	{ changeCurrentId }
+
 )(ModalProject)

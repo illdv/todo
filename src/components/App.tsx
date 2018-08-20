@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import classnames from 'classnames'
 import 'bootstrap/dist/css/bootstrap.css'
 
-import StoreState from '../types'
 import { fetchTitlelist } from '../AC'
 import ProjectTitle from './Projects/ProjectTitle'
 import ProjectItem from './Projects/ProjectItem'
-import Tasks from './Tasks'
+import ItemTaskList from './Tasks/ItemTaskList'
+import TitleTaskList from './Tasks/TitleTaskList'
+
 
 import './style.css'
 
@@ -16,8 +17,6 @@ import './style.css'
 
 interface Props {
 	fetchTitlelist: Function;
-	listTasks: Array<Object>;
-
 }
 
 class App extends React.Component<Props> {
@@ -33,7 +32,6 @@ class App extends React.Component<Props> {
 	}
 
 	render() {
-		const { listTasks } = this.props
 
 		return <div className='container'>
 			<div className='row'>
@@ -47,7 +45,8 @@ class App extends React.Component<Props> {
 				</aside>
 
 				<section className='col-md-7 pl-md-5  tasks'>
-					<Tasks tasks={listTasks} />
+					<TitleTaskList />
+					<ItemTaskList />
 				</section>
 
 				<button
@@ -67,9 +66,7 @@ class App extends React.Component<Props> {
 
 
 export default connect(
-	(state: StoreState) => ({
-		listTasks: state.tasks,
-	}),
+	null,
 	{ fetchTitlelist, }
 )(App)
 

@@ -6,6 +6,6 @@ export const createProject = (item: any, isOpen: boolean) => {
 }
 
 
-export const createTask = (item: any, changeText?: Array<Object>) => {
+export const createTask = (item: any, changeText?: Array<Object>, ) => {
 	return { id: item.id, text: changeText ? changeText : item.text }
 }

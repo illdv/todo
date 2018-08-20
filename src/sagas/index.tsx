@@ -7,7 +7,7 @@ import getData from '../api'
 
 import { randomId } from './../helpers'
 
-
+import { Iaction, Iproject } from '../types'
 
 export const addAttr = (item: Array<string> | string, index?: number) =>
 	({ id: randomId(), isOpen: index === 0, name: item })
@@ -16,7 +16,7 @@ export const addAttr = (item: Array<string> | string, index?: number) =>
 
 
 function* fetchTitle() {
-	yield takeLatest(FETCH_PROJECTS, function* ({ type }) {
+	yield takeLatest(FETCH_PROJECTS, function* ({ type }: Iaction) {
 
 		yield put({
 			type: `${type}` + START,
@@ -24,7 +24,7 @@ function* fetchTitle() {
 
 		try {
 			const responseArr: Array<Object> = yield call(getData);
-			const dataTitle = responseArr.map((item: { name: string, id: number }, index) => addAttr(item.name, index))
+			const dataTitle = responseArr.map((item: Iproject, index) => addAttr(item.name, index))
 
 
 			yield put({
@@ -48,9 +48,9 @@ function* fetchTask() {
 	yield takeLatest(FETCH_PROJECTS + SUCCESS, function* () {
 
 		const store = yield select();
-		const dataTexts = store.projects.map((item: { id: number }) => (
-			{ id: item.id, text: [] }
-		))
+		const dataTexts: Array<Object> = store.projects.map((item: { id: number, text: Array<Object> }) => ({ id: item.id, text: [] }))
+
+
 		yield put({
 			type: CREATE_TASK_LIST,
 			payload: dataTexts
@@ -60,11 +60,11 @@ function* fetchTask() {
 }
 
 function* deleteTab() {
-	yield takeEvery(DELETE_TAB, function* (action: { type: string, payload: number }) {
+	yield takeEvery(DELETE_TAB, function* (action: Iaction) {
 
 		yield put({
 			type: DELETE_PROJECT,
-			payload: action.payload
+			payload: { id: action.payload }
 		})
 
 		yield put({
@@ -74,7 +74,7 @@ function* deleteTab() {
 }
 
 function* addTab() {
-	yield takeEvery(ADD_TAB, function* (action: { type: string, payload: string }) {
+	yield takeEvery(ADD_TAB, function* (action: Iaction) {
 
 		const value = addAttr(action.payload, 0)
 

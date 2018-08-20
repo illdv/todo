@@ -3,9 +3,14 @@ import EditField from '../EditField'
 import { connect } from 'react-redux';
 import { addTab } from '../../AC'
 
+interface Props {
+    addTab: Function;
+}
+interface State {
+    isOpenTitle: boolean
+}
 
-
-class TitleMenu extends React.Component {
+class TitleMenu extends React.Component<Props, State> {
 
     state = {
         isOpenTitle: false,
@@ -32,7 +37,7 @@ class TitleMenu extends React.Component {
         })
     }
 
-    handleProjectTitle = (value) => {
+    handleProjectTitle = (value: string) => {
         value && this.props.addTab(value)
         this.HandleOpen()
     }

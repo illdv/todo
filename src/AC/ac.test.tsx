@@ -1,4 +1,4 @@
-import { currentId } from '.'
+import { changeCurrentId } from '.'
 import { CURRENT_ID } from "../constants";
 
 
@@ -9,7 +9,7 @@ describe('current id', () => {
       type: CURRENT_ID,
       payload: {}
     }
-    expect(currentId(1)).toEqual(expectedAction)
+    expect(changeCurrentId(1)).toEqual(expectedAction)
   })
   it('current id with mark ', () => {
 
@@ -17,6 +17,6 @@ describe('current id', () => {
       type: CURRENT_ID,
       payload: { actual: 1 }
     }
-    expect(currentId(1, 'actual')).toEqual(expectedAction)
+    expect(changeCurrentId(1, 'actual')).toEqual(expectedAction)
   })
 })

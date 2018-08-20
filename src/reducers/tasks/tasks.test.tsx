@@ -9,14 +9,12 @@ describe('tasks', () => {
 
 	const item1 = {
 		id: 1,
-		isOpen: false,
 		text: []
 	}
 
 	const textItem1 = { id: 11, text: 'a' }
 	const item2 = {
 		id: 2,
-		isOpen: true,
 		text: [textItem1]
 	}
 
@@ -122,9 +120,5 @@ describe('tasks', () => {
 			}
 		])
 	})
-
-
-
-
 
 })

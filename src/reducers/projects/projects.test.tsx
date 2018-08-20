@@ -1,19 +1,22 @@
-import { ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT } from "../../constants";
+import { ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT, TOGGLE_PROJECT } from "../../constants";
 import projects from '.'
 
 
 describe('projects', () => {
 
-	const state = [{ id: 1, name: 'a' }, { id: 2, name: 'b' }]
-	const item = [{ id: 3, name: 'c' }]
+	const item1 = { id: 1, isOpen: true, name: 'a' };
+	const item2 = { id: 2, isOpen: false, name: 'b' }
+
+	const state = [item1, item2]
+	const item3 = { id: 3, isOpen: true, name: 'a' }
 
 	it('add title item', () => {
 		expect(
 			projects(state, {
 				type: ADD_PROJECT,
-				payload: item
+				payload: item3
 			})
-		).toEqual([...state, ...item])
+		).toEqual([{ id: 1, isOpen: false, name: 'a' }, item2, item3])
 	})
 
 
@@ -21,38 +24,30 @@ describe('projects', () => {
 		expect(
 			projects(state, {
 				type: DELETE_PROJECT,
-				payload: 2
+				payload: { id: 1 }
 			})
-		).toEqual([{ id: 1, name: 'a' }])
+		).toEqual([{ id: 2, isOpen: true, name: 'b' }])
 	})
 
 	it('edit title item', () => {
 		expect(
 			projects(state, {
 				type: EDIT_PROJECT,
-				payload: { id: 2, name: 'c' }
+				payload: { id: 1, isOpen: true, name: 'c' }
 			})
-		).toEqual([{ id: 1, name: 'a' }, { id: 2, name: 'c' }])
+		).toEqual([{ id: 1, isOpen: true, name: 'c' }, item2])
 	})
 
-	// it('toggle project', () => {
-	// 	expect(
-	// 		projects(state, {
-	// 			type: TOGGLE_PROJECT,
-	// 			payload: 1
-	// 		})
-	// 	).toEqual([
-	// 		{
-	// 			id: 1,
-	// 			isOpen: true,
-	// 			text: []
-	// 		},
-	// 		{
-	// 			// id: 2,
-	// 			// isOpen: false,
-	// 			// text: [textItem1]
-	// 		}
-	// 	])
-	// })
+	it('toggle project', () => {
+		expect(
+			projects(state, {
+				type: TOGGLE_PROJECT,
+				payload: { id: 2 }
+			})
+		).toEqual([
+			{ id: 1, isOpen: false, name: 'a' },
+			{ id: 2, isOpen: true, name: 'b' },
+		])
+	})
 
 })
