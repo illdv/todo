@@ -47,14 +47,14 @@ class App extends React.Component<Props> {
 					<TaskItem />
 				</section>
 
-				<button
+				<button title={this.discmobileBtn()} aria-label={this.discmobileBtn()}
 					onClick={this.onToggleMobileProjects}
-					className='toggle-burger'>toggle-burger
-					</button>
+					className='toggle-burger'>
+				</button>
 			</div>
 		</div >
 	}
-
+	discmobileBtn = () => this.state.isOpenMobileProjects ? 'Закрыть проекты' : 'Открыть проекты'
 	onToggleMobileProjects = () => this.setState({
 		isOpenMobileProjects: !this.state.isOpenMobileProjects
 	})

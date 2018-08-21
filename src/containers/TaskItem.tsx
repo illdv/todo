@@ -15,7 +15,6 @@ interface Props {
 	changeCurrentId: Function;
 	actualId: any;
 	currentTask: Itask,
-	projectId: any,
 }
 
 class ItemTaskList extends React.Component<Props> {
@@ -23,8 +22,7 @@ class ItemTaskList extends React.Component<Props> {
 
 
 	render() {
-		const { actualId, currentTask, projectId } = this.props
-		console.log(projectId);
+		const { actualId, currentTask } = this.props
 
 
 		return currentTask ? <ul className='list-block'>
@@ -67,10 +65,6 @@ export default connect(
 		return {
 			actualId: state.currentId,
 			currentTask: fn(state),
-			projectId: state.projects.find(item => {
-
-				return item.isOpen
-			})
 		}
 	}, { editProjectText, changeCurrentId }
 )(ItemTaskList)

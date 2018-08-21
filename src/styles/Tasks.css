@@ -31,6 +31,6 @@
     font-size: 18px;
     transition: 0.7s; }
     .tasks__item:hover {
-      border-bottom: 3px solid #f1f1f1; }
+      border-bottom: 2px solid rgba(177, 172, 172, 0.5); }
   .tasks__text {
     margin-left: 20px; }
