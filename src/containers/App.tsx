@@ -3,18 +3,20 @@ import { connect } from 'react-redux'
 import classnames from 'classnames'
 import 'bootstrap/dist/css/bootstrap.css'
 
+import StoreState, { Itask } from '../types'
 import { fetchTitlelist } from '../AC'
 import ProjectTitle from './ProjectTitle'
-import ProjectItem from './ProjectItem'
-import TaskItem from './TaskItem'
+import ProjectList from '../components/ProjectList'
+import TaskItem from '../components/TaskList'
 import TitleTaskList from './TaskTitle'
-
 
 import '../styles/style.css'
 
 
 interface Props {
 	fetchTitlelist: Function;
+	projectList: Array<Object>;
+	currentTask: Itask;
 }
 
 class App extends React.Component<Props> {
@@ -29,32 +31,41 @@ class App extends React.Component<Props> {
 		isOpenMobileProjects: false
 	}
 
+
 	render() {
+		const { projectList, currentTask } = this.props
+
+		const stylesAside = classnames({
+			'projects--active': this.state.isOpenMobileProjects,
+			'projects': true,
+			'col-md-4': true,
+		})
+
+		const burgerBtn = <button title={this.discMobileBtn()} aria-label={this.discMobileBtn()}
+			onClick={this.onToggleMobileProjects}
+			className='toggle-burger'>
+		</button>
 
 		return <div className='container'>
 			<div className='row'>
-				<aside className={classnames({
-					'col-md-4': true,
-					'projects': true,
-					'projects--active': this.state.isOpenMobileProjects
-				})}>
-					<ProjectTitle />
-					<ProjectItem />
-				</aside>
+				<React.Fragment>
+					<aside className={stylesAside}>
+						<ProjectTitle />
+						<ProjectList projectList={projectList} />
+					</aside>
+					{burgerBtn}
+				</React.Fragment>
 
-				<section className='col-md-7 pl-md-5  tasks'>
+				<article className='col-md-7 pl-md-5  tasks'>
 					<TitleTaskList />
-					<TaskItem />
-				</section>
+					{currentTask && <TaskItem currentTask={currentTask} />}
+				</article>
 
-				<button title={this.discmobileBtn()} aria-label={this.discmobileBtn()}
-					onClick={this.onToggleMobileProjects}
-					className='toggle-burger'>
-				</button>
+
 			</div>
 		</div >
 	}
-	discmobileBtn = () => this.state.isOpenMobileProjects ? 'Закрыть проекты' : 'Открыть проекты'
+	discMobileBtn = () => this.state.isOpenMobileProjects ? 'Закрыть проекты' : 'Открыть проекты'
 	onToggleMobileProjects = () => this.setState({
 		isOpenMobileProjects: !this.state.isOpenMobileProjects
 	})
@@ -62,9 +73,15 @@ class App extends React.Component<Props> {
 
 
 
-
 export default connect(
-	null,
+	(state: StoreState) => {
+		const openedProject = state.projects.find(item => item.isOpen)
+
+		return {
+			projectList: state.projects,
+			currentTask: state.tasks.find((task) => openedProject.id === task.id)
+		}
+	},
 	{ fetchTitlelist, }
 )(App)
 
