@@ -3,20 +3,22 @@ import { connect } from 'react-redux'
 import classnames from 'classnames'
 import 'bootstrap/dist/css/bootstrap.css'
 
-import StoreState, { Itask } from '../types'
+import StoreState, { Itask, Iproject } from '../types'
 import { fetchTitlelist } from '../AC'
 import ProjectTitle from './ProjectTitle'
 import ProjectList from '../components/ProjectList'
 import TaskItem from '../components/TaskList'
-import TitleTaskList from './TaskTitle'
+import TaskTitle from './TaskTitle'
 
 import '../styles/style.css'
+import { Route } from 'react-router';
 
 
 interface Props {
 	fetchTitlelist: Function;
 	projectList: Array<Object>;
 	currentTask: Itask;
+	currentProject: Iproject
 }
 
 class App extends React.Component<Props> {
@@ -33,7 +35,7 @@ class App extends React.Component<Props> {
 
 
 	render() {
-		const { projectList, currentTask } = this.props
+		const { projectList, currentTask, currentProject } = this.props
 
 		const stylesAside = classnames({
 			'projects--active': this.state.isOpenMobileProjects,
@@ -48,18 +50,37 @@ class App extends React.Component<Props> {
 
 		return <div className='container'>
 			<div className='row'>
-				<React.Fragment>
-					<aside className={stylesAside}>
-						<ProjectTitle />
-						<ProjectList projectList={projectList} />
-					</aside>
-					{burgerBtn}
-				</React.Fragment>
+				<Route path='/' render={() =>
+					<React.Fragment>
+						<aside className={stylesAside}>
+							<ProjectTitle />
+							<ProjectList projectList={projectList} />
+						</aside>
+						{burgerBtn}
 
-				<article className='col-md-7 pl-md-5  tasks'>
-					<TitleTaskList />
-					{currentTask && <TaskItem currentTask={currentTask} />}
-				</article>
+					</React.Fragment>
+
+				}>
+
+				</Route>
+
+
+
+
+				<Route path='/:projectName' render={({ match }) => {
+					console.log(match.params.projectName)
+
+					return <article className='col-md-7 pl-md-5  tasks'>
+						{currentProject && <TaskTitle currentProject={currentProject} />}
+						{currentTask && <TaskItem currentTask={currentTask} />}
+					</article>
+				}
+
+
+				}>
+
+				</Route>
+
 
 
 			</div>
@@ -79,9 +100,9 @@ export default connect(
 
 		return {
 			projectList: state.projects,
-			currentTask: state.tasks.find((task) => openedProject.id === task.id)
+			currentTask: state.tasks.find((task) => openedProject.id === task.id),
+			currentProject: state.projects.find((project) => openedProject.id === project.id)
 		}
 	},
 	{ fetchTitlelist, }
 )(App)
-

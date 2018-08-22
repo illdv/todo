@@ -4,7 +4,6 @@ import {
 	CREATE_TASK_LIST, DELETE_TAB, ADD_TAB, FETCH_PROJECTS, DELETE_PROJECT, ADD_PROJECT
 } from "../constants";
 // import getData from '../api'
-
 import { randomId } from './../helpers'
 
 import { Iaction, Iproject } from '../types'

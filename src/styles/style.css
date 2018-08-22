@@ -233,10 +233,29 @@
   padding-bottom: 20px; }
 
 .projects__item {
-  font-size: 20px; }
+  font-size: 20px;
+  position: relative; }
 
 .projects__text {
-  font-style: italic; }
+  font-style: italic;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7); }
+  .projects__text:hover, .projects__text:focus {
+    text-decoration: none;
+    color: black;
+    outline: none; }
+  .projects__text:active {
+    color: rgba(0, 0, 0, 0.7); }
+
+.projects__btn {
+  display: none; }
+
+.active-item--project ~ .projects__btn {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center; }
 
 .tasks {
   background-color: white; }

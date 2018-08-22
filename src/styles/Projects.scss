@@ -46,10 +46,31 @@
 		}
 		&__item{
 			font-size: 20px;
+			position: relative;
 		}
 		&__text{
 			font-style: italic;
+			text-decoration: none;
+			color: rgba(0, 0, 0, 0.7);
+			&:hover, &:focus{
+				text-decoration: none;
+				color: rgba(0, 0, 0,1 );
+				outline: none;
+			}
+			 &:active{
+				color: rgba(0, 0, 0, 0.7);
+			}
 		}
+		&__btn{
+			display: none;
+		}
+}
+.active-item--project ~ .projects__btn{
+	position: absolute;
+	right: 0;
+	height: 100%;
+	display: flex;
+	align-items: center;
 }
 
 

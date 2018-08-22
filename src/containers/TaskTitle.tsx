@@ -2,15 +2,14 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import EditField from '../components/EditField'
 import { addedProjectTask } from '../AC'
-import StoreState from '../types'
 
 
 interface Props {
 	addedProjectTask: Function;
-	currentProject: any
+	currentProject: { name: string, id: number }
 }
 interface State {
-	isOpenTitle: boolean
+	isOpenTitle: boolean;
 }
 
 class TitleTaskList extends React.Component<Props, State> {
@@ -25,11 +24,12 @@ class TitleTaskList extends React.Component<Props, State> {
 		const { currentProject } = this.props
 
 
+
 		return <section className='tasks__title'>
-			{currentProject && <div className='title-block'>
+			<div className='title-block'>
 				<h2 className='title-block__title tasks__head-text'>{currentProject.name}
 				</h2>
-			</div>}
+			</div>
 			{this.state.isOpenTitle ?
 				<EditField onOpen={this.HandleOpen} id={currentProject.id}
 					handleTextValue={this.handleProjectTitle} /> :
@@ -52,9 +52,7 @@ class TitleTaskList extends React.Component<Props, State> {
 
 
 export default connect(
-	(state: StoreState) => ({
-		currentProject: state.projects.find(item => item.isOpen)
-	}),
+	null,
 	{ addedProjectTask }
 )(TitleTaskList)
 
