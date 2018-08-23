@@ -6,7 +6,7 @@ import { addedProjectTask } from '../AC'
 
 interface Props {
 	addedProjectTask: Function;
-	currentProject: { name: string, id: number }
+	currentProject: { id: number, name: string };
 }
 interface State {
 	isOpenTitle: boolean;

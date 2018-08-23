@@ -29,7 +29,8 @@
   .tasks__item {
     border-bottom: 2px solid rgba(241, 241, 241, 0.5);
     font-size: 18px;
-    transition: 0.7s; }
+    transition: 0.7s;
+    padding-bottom: 10px; }
     .tasks__item:hover {
       border-bottom: 2px solid rgba(177, 172, 172, 0.5); }
   .tasks__text {

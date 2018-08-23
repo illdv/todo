@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import classnames from 'classnames'
 import 'bootstrap/dist/css/bootstrap.css'
 
-import StoreState, { Itask, Iproject } from '../types'
+import StoreState, { Iproject, Itask } from '../types'
 import { fetchTitlelist } from '../AC'
 import ProjectTitle from './ProjectTitle'
 import ProjectList from '../components/ProjectList'
@@ -11,14 +11,14 @@ import TaskItem from '../components/TaskList'
 import TaskTitle from './TaskTitle'
 
 import '../styles/style.css'
-import { Route } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 
 
 interface Props {
 	fetchTitlelist: Function;
-	projectList: Array<Object>;
+	projectList: Array<any>;
 	currentTask: Itask;
-	currentProject: Iproject
+	currentProject: Iproject;
 }
 
 class App extends React.Component<Props> {
@@ -35,7 +35,11 @@ class App extends React.Component<Props> {
 
 
 	render() {
+
 		const { projectList, currentTask, currentProject } = this.props
+
+		console.log(projectList);
+
 
 		const stylesAside = classnames({
 			'projects--active': this.state.isOpenMobileProjects,
@@ -66,21 +70,22 @@ class App extends React.Component<Props> {
 
 
 
-
-				<Route path='/:projectName' render={({ match }) => {
-					console.log(match.params.projectName)
-
-					return <article className='col-md-7 pl-md-5  tasks'>
-						{currentProject && <TaskTitle currentProject={currentProject} />}
-						{currentTask && <TaskItem currentTask={currentTask} />}
-					</article>
-				}
+				<Switch>
+					{projectList.length && <Route path='/:projectName' render={() => {
 
 
-				}>
 
-				</Route>
+						return <article className='col-md-7 pl-md-5  tasks'>
+							<TaskTitle currentProject={currentProject} />
+							<TaskItem currentTask={currentTask} />
+						</article>
+					}
 
+
+					}>
+					</Route>}
+					<Redirect to='/1' />
+				</Switch>
 
 
 			</div>
@@ -94,15 +99,17 @@ class App extends React.Component<Props> {
 
 
 
-export default connect(
-	(state: StoreState) => {
-		const openedProject = state.projects.find(item => item.isOpen)
+export default
 
-		return {
-			projectList: state.projects,
-			currentTask: state.tasks.find((task) => openedProject.id === task.id),
-			currentProject: state.projects.find((project) => openedProject.id === project.id)
-		}
-	},
-	{ fetchTitlelist, }
-)(App)
+	connect(
+		(state: StoreState) => {
+			const openedProject = state.projects.find(item => item.isOpen)
+			return {
+				projectList: state.projects,
+				currentTask: state.tasks.find((task) => openedProject.id === task.id),
+				currentProject: state.projects.find((project) => openedProject.id === project.id)
+			}
+		},
+		{ fetchTitlelist, }
+
+	)(App)

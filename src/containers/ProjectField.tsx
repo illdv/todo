@@ -1,11 +1,12 @@
 import * as React from 'react';
 import ProjectModal from './ProjectModal'
+import classnames from 'classnames'
 import { Iproject } from '../types'
 import CurrentIdBtn from './buttons/CurrentIdBtn'
 import EditField from '../components/EditField'
 import { connect } from 'react-redux'
 import { editProjectName, changeCurrentId, toggleText } from '../AC'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 interface Props {
@@ -18,24 +19,25 @@ interface Props {
 
 class ProjectField extends React.Component<Props> {
 
-	fn = (match: any, location: any) => {
-
-		return match
-	}
 	render() {
 
 
 		const { project, actualId, toggleText } = this.props
 
-
+		const activeStyle = classnames({
+			'list-block__text': true,
+			'projects__text': true,
+			'active-item': project.isOpen,
+			'active-item--project': project.isOpen,
+		})
 
 
 		const defaultField = <React.Fragment>
-			<NavLink to={`/${project.name}`} onClick={() => toggleText(project.id)}
-				className='list-block__text projects__text' activeClassName="active-item--project active-item" isActive={this.fn}>
+			<Link to={`/${project.id}`} onClick={() => toggleText(project.id)}
+				className={activeStyle}>
 
 				{project.name}
-			</NavLink>
+			</Link>
 
 			<CurrentIdBtn id={project.id} textContent='Изменить' mark='modal' classValue='list-block__btn projects__btn' />
 			{
