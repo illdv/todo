@@ -11,7 +11,7 @@ import TaskItem from '../components/TaskList'
 import TaskTitle from './TaskTitle'
 
 import '../styles/style.css'
-import { Route, Switch, Redirect } from 'react-router';
+import { Route } from 'react-router';
 
 
 interface Props {
@@ -69,19 +69,17 @@ class App extends React.Component<Props> {
 
 
 
-				<Switch>
-					{projectList.length && <Route path='/:projectName' render={() => {
+				{currentTask && <Route path='/:projectName' render={() => {
 
-						return <article className='col-md-7 pl-md-5  tasks'>
-							<TaskTitle currentProject={currentProject} />
-							<TaskItem currentTask={currentTask} />
-						</article>
-					}
+					return <article className='col-md-7 pl-md-5  tasks'>
+						<TaskTitle currentProject={currentProject} />
+						<TaskItem currentTask={currentTask} />
+					</article>
+				}
 
-					}>
-					</Route>}
-					<Redirect to='/1' />
-				</Switch>
+				}>
+				</Route>}
+
 
 
 			</div>

@@ -1,9 +1,9 @@
-import { put, takeEvery, takeLatest, all, select } from 'redux-saga/effects'
+import { put, takeEvery, takeLatest, all, select, call } from 'redux-saga/effects'
 import {
 	START, SUCCESS, FAIL, ADD_TASK_TEXT, DELETE_TASK_TEXT,
 	CREATE_TASK_LIST, DELETE_TAB, ADD_TAB, FETCH_PROJECTS, DELETE_PROJECT, ADD_PROJECT
 } from "../constants";
-// import getData from '../api'
+import getData from '../api'
 import { randomId } from './../helpers'
 
 import { Iaction, Iproject } from '../types'
@@ -22,8 +22,8 @@ function* fetchTitle() {
 		})
 
 		try {
-			// const responseArr: Array<Object> = yield call(getData);
-			const responseArr: Array<any> = [{ name: 1 }, { name: 2 }, { name: 3 }]
+			const responseArr: Array<Object> = yield call(getData);
+			// const responseArr: Array<any> = [{ name: 1 }, { name: 2 }, { name: 3 }]
 			const dataTitle = responseArr.map((item: Iproject, index) => addAttr(item.name, index))
 
 
@@ -48,6 +48,8 @@ function* fetchTask() {
 	yield takeLatest(FETCH_PROJECTS + SUCCESS, function* () {
 
 		const store = yield select();
+		console.log(store);
+
 		const dataTexts: Array<Object> = store.projects.map((item: { id: number, text: Array<Object> }) => ({ id: item.id, text: [] }))
 
 
