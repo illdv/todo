@@ -38,7 +38,6 @@ class App extends React.Component<Props> {
 
 		const { projectList, currentTask, currentProject } = this.props
 
-		console.log(projectList);
 
 
 		const stylesAside = classnames({
@@ -73,14 +72,11 @@ class App extends React.Component<Props> {
 				<Switch>
 					{projectList.length && <Route path='/:projectName' render={() => {
 
-
-
 						return <article className='col-md-7 pl-md-5  tasks'>
 							<TaskTitle currentProject={currentProject} />
 							<TaskItem currentTask={currentTask} />
 						</article>
 					}
-
 
 					}>
 					</Route>}
